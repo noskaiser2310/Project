@@ -17,12 +17,12 @@ export const TestQuizPage: React.FC = () => {
 
   const handleOptionSelect = (optionId: string) => {
     setAnswers(prev => ({ ...prev, [currentQuestion.id]: optionId }));
-    setError(null); // Clear error when an option is selected
+    setError(null); 
   };
 
   const handleNext = () => {
     if (!answers[currentQuestion.id]) {
-        setError("Vui lòng chọn một đáp án.");
+        setError("Vui lòng chọn một đáp án để tiếp tục.");
         return;
     }
     if (currentQuestionIndex < totalQuestions - 1) {
@@ -35,7 +35,6 @@ export const TestQuizPage: React.FC = () => {
         setError("Vui lòng chọn một đáp án trước khi nộp bài.");
         return;
     }
-    // Calculate score
     let totalScore = 0;
     let maxPossibleScore = 0;
 
@@ -44,50 +43,69 @@ export const TestQuizPage: React.FC = () => {
       if (selectedOptionId) {
         totalScore += scoreAnswer(q, selectedOptionId);
       }
-      maxPossibleScore += 3; // Assuming max points per question is 3
+      maxPossibleScore += 3; 
     });
     
     navigate(Page.TestResults, { state: { score: totalScore, maxScore: maxPossibleScore, numQuestions: totalQuestions } });
   };
 
+  const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-xl">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-brand-dark-text">
-          Câu {currentQuestionIndex + 1}: {currentQuestion.id.startsWith("Đề bài") ? currentQuestion.id : `Đề bài`}
-        </h2>
-        <span className="px-3 py-1.5 bg-gradient-button text-white text-sm font-semibold rounded-full">
-          Số lượng: {currentQuestionIndex + 1} / {totalQuestions}
-        </span>
+    <div className="max-w-3xl mx-auto bg-brand-bg-card p-6 sm:p-10 rounded-2xl shadow-card">
+      <div className="mb-8">
+        <div className="flex justify-between items-center mb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-brand-dark-text">
+            Câu hỏi {currentQuestionIndex + 1}
+          </h2>
+          <span className="px-3 py-1 bg-gradient-button text-white text-xs sm:text-sm font-semibold rounded-full shadow-sm">
+             {currentQuestionIndex + 1} / {totalQuestions}
+          </span>
+        </div>
+        <div className="w-full bg-brand-border rounded-full h-3 shadow-inner">
+          <div 
+            className="bg-brand-primary h-3 rounded-full transition-all duration-300 ease-out" 
+            style={{ width: `${progressPercentage}%` }}
+            aria-valuenow={progressPercentage}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            role="progressbar"
+            aria-label={`Progress: ${progressPercentage}%`}
+          ></div>
+        </div>
       </div>
 
-      <div className="bg-gray-50 p-6 rounded-lg mb-6 min-h-[150px] flex items-center">
-        <p className="text-lg text-gray-700">{currentQuestion.text}</p>
+      <div className="bg-brand-bg-light p-6 sm:p-8 rounded-xl mb-8 shadow-inner border border-brand-border/50">
+        <p className="text-lg sm:text-xl text-brand-dark-text leading-relaxed font-medium">{currentQuestion.text}</p>
       </div>
 
-      {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
+      {error && <p className="text-red-500 text-sm mb-4 text-center bg-red-100 p-2.5 rounded-md shadow-sm">{error}</p>}
 
-      <div className="space-y-3 mb-8">
+      <div className="space-y-3 sm:space-y-4 mb-10">
         {currentQuestion.options.map((option, index) => (
           <button
             key={option.id}
             onClick={() => handleOptionSelect(option.id)}
-            className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-150
+            className={`w-full text-left p-4 sm:p-5 rounded-xl border-2 transition-all duration-200 ease-in-out transform focus:outline-none
               ${answers[currentQuestion.id] === option.id 
-                ? 'bg-indigo-500 border-indigo-500 text-white shadow-md scale-105' 
-                : 'bg-white border-gray-200 hover:border-indigo-300 hover:bg-indigo-50'
+                ? 'bg-brand-primary border-brand-accent text-white shadow-lg scale-[1.02]' 
+                : 'bg-white border-brand-border hover:border-brand-primary/70 hover:bg-brand-primary/10 text-brand-dark-text focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/70'
               }`}
+            aria-pressed={answers[currentQuestion.id] === option.id}
           >
-            <span className="font-semibold mr-2">{String.fromCharCode(65 + index)}.</span> {option.text}
+            <span className={`font-semibold mr-2.5 text-sm ${answers[currentQuestion.id] === option.id ? 'text-white/90' : 'text-brand-primary'}`}>{String.fromCharCode(65 + index)}.</span> 
+            <span className="text-sm sm:text-base">{option.text}</span>
           </button>
         ))}
       </div>
 
-      <div className="flex justify-end space-x-3">
+      <div className="flex justify-end space-x-4">
         {currentQuestionIndex < totalQuestions - 1 ? (
           <StyledButton 
             onClick={handleNext}
-            rightIcon={<IconChevronRight className="w-4 h-4"/>}
+            rightIcon={<IconChevronRight className="w-4 h-4 sm:w-5 sm:h-5"/>}
+            size="md"
+            disabled={!answers[currentQuestion.id]}
           >
             Tiếp tục
           </StyledButton>
@@ -95,8 +113,10 @@ export const TestQuizPage: React.FC = () => {
           <StyledButton 
             onClick={handleSubmit}
             variant="primary"
+            size="md"
+            disabled={!answers[currentQuestion.id]}
           >
-            Nộp bài
+            Nộp bài & Xem Kết Quả
           </StyledButton>
         )}
       </div>

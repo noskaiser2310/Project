@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- FAVICON_PLACEHOLDER: Replace with your favicon link -->
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DadMind</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,28 +12,106 @@
         theme: {
           extend: {
             colors: {
-              'brand-primary': '#4F46E5', // Indigo
-              'brand-secondary': '#EC4899', // Pink
-              'brand-accent': '#8B5CF6', // Violet
-              'brand-light-blue': '#EFF6FF',
-              'brand-dark-text': '#1E293B', // Slate-800
-              'brand-bg-light': '#F0F9FF', // sky-50
+              'brand-primary': '#4A55A2', 
+              'brand-secondary': '#E178C5', 
+              'brand-accent': '#7F5283', 
+              'brand-bg-subtle': '#F4F7FC', 
+              'brand-dark-text': '#2C3333', 
+              'brand-light-text': '#4F4F4F', 
+              'brand-bg-light': '#E8F0F9', 
+              'brand-bg-card': '#FFFFFF', 
+              'brand-border': '#D1D5DB',
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
             },
             backgroundImage: {
-              'gradient-main': 'linear-gradient(to br, #E0F2FE, #F3E8FF)', // Light Sky to Light Purple
-              'gradient-nav': 'linear-gradient(to right, #6366F1, #A855F7, #EC4899)', // Indigo, Purple, Pink
-              'gradient-button': 'linear-gradient(to right, #8B5CF6, #EC4899)', // Violet to Pink
-            }
+              'gradient-main': 'linear-gradient(to br, #E8F0F9, #FDEBF7)', // Existing soft gradient for layout bg
+              'gradient-nav': 'linear-gradient(to right, #4A55A2, #7F5283)', // Using brand-primary and brand-accent
+              'gradient-button': 'linear-gradient(to right, #7F5283, #E178C5)', // Existing button gradient
+            },
+            boxShadow: {
+              'interactive': '0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04)',
+              'interactive-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03)',
+              'card': '0 5px 15px rgba(0, 0, 0, 0.08)', // A slightly softer, more modern card shadow
+              'header': '0 2px 8px rgba(0,0,0,0.06)' // Subtle shadow for header
+            },
+            typography: (theme) => ({
+              DEFAULT: {
+                css: {
+                  color: theme('colors.brand-dark-text'),
+                  a: {
+                    color: theme('colors.brand-primary'),
+                    '&:hover': {
+                      color: theme('colors.brand-accent'),
+                    },
+                    fontWeight: '500',
+                  },
+                  h1: { color: theme('colors.brand-dark-text'), fontWeight: '700' },
+                  h2: { color: theme('colors.brand-dark-text'), fontWeight: '600' },
+                  h3: { color: theme('colors.brand-primary'), fontWeight: '600' },
+                  strong: { color: theme('colors.brand-dark-text'), fontWeight: '600' },
+                  ul: { 
+                    listStyleType: 'disc', 
+                    paddingLeft: '1.5em', 
+                    color: theme('colors.brand-light-text'),
+                    li: {
+                        marginTop: '0.25em', 
+                        marginBottom: '0.25em',
+                        color: theme('colors.brand-light-text'), // Ensure li text color
+                        '&::marker': { // Style the bullet itself
+                           color: theme('colors.brand-primary'),
+                        },
+                    }
+                  },
+                  ol: { 
+                    listStyleType: 'decimal', 
+                    paddingLeft: '1.5em', 
+                    color: theme('colors.brand-light-text'),
+                    li: {
+                        marginTop: '0.25em', 
+                        marginBottom: '0.25em',
+                        color: theme('colors.brand-light-text'),
+                         '&::marker': { 
+                           color: theme('colors.brand-primary'),
+                        },
+                    }
+                  },
+                  p: {
+                    color: theme('colors.brand-light-text'),
+                    lineHeight: '1.65',
+                    marginBottom: '1em',
+                  },
+                  // Add more styles as needed
+                },
+              },
+               // Add sizes for prose if needed, e.g., prose-sm, prose-lg
+              sm: {
+                css: {
+                  p: { fontSize: '0.875rem', lineHeight: '1.6' },
+                  ul: { li: { fontSize: '0.875rem' } },
+                  ol: { li: { fontSize: '0.875rem' } },
+                }
+              },
+              base: {
+                css: {
+                  p: { fontSize: '1rem', lineHeight: '1.65' },
+                  ul: { li: { fontSize: '1rem' } },
+                  ol: { li: { fontSize: '1rem' } },
+                }
+              }
+            }),
           }
-        }
+        },
+        // Tailwind's CDN includes a basic version of typography plugin. 
+        // The above configuration extends its behavior.
+        // Explicitly listing plugins like this is for Node.js setups.
+        // plugins: [] 
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script type="importmap">
 {
   "imports": {
@@ -41,15 +119,15 @@
     "react": "https://esm.sh/react@^19.1.0",
     "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
     "react-router-dom": "https://esm.sh/react-router-dom@^7.6.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.0.1"
+    "@google/genai": "https://esm.sh/@google/genai@^1.0.1",
+    "pdfjs-dist/": "https://esm.sh/pdfjs-dist@^4.4.168/"
   }
 }
 </script>
 </head>
-  <body>
+  <body class="bg-brand-bg-subtle font-sans">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
-</html>
-<link rel="stylesheet" href="index.css">
+</html><link rel="stylesheet" href="index.css">
 <script src="index.tsx" type="module"></script>

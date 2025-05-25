@@ -30,17 +30,9 @@ const App: React.FC = () => {
     logout: () => setCurrentUser(null),
   }), [currentUser]);
 
-  // Simulate API_KEY for Gemini. In a real app, this would be in a .env file.
-  // IMPORTANT: This is a placeholder. A real API key should NEVER be hardcoded in client-side code.
   // It's assumed process.env.API_KEY is set in the build/runtime environment.
-  if (!process.env.API_KEY) {
-    // In a real deployment, you'd ensure API_KEY is set.
-    // For this example, we'll set a placeholder to allow UI to render.
-    // The Gemini service will check and error if it's missing/invalid.
-    (process.env as any).API_KEY = "YOUR_GEMINI_API_KEY_HERE"; 
-    console.warn("API_KEY is not set. Using placeholder. Gemini features will not work without a valid key.");
-  }
-
+  // The application must not ask the user for it or set a default here.
+  // Gemini services will handle checks for a valid API key.
 
   return (
     <AuthContext.Provider value={authContextValue}>

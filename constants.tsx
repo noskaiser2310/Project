@@ -2,11 +2,12 @@
 import React from 'react';
 
 export const APP_NAME = "DadMind";
+export const APP_LOGO_TEXT = "DadMind"; 
 
-export const DAD_CHILD_ILLUSTRATION_URL = "https://picsum.photos/seed/dadchildpics/600/500";
-export const ROBOT_AVATAR_URL = "https://picsum.photos/seed/robotai/100/100";
-export const USER_AVATAR_URL = "https://picsum.photos/seed/usericon/100/100";
-export const EXPERT_AVATAR_URL = "https://picsum.photos/seed/experticon/100/100";
+export const DAD_CHILD_ILLUSTRATION_URL = "/assets/dad-child-illustration.webp"; 
+export const ROBOT_AVATAR_URL = "/assets/robot-avatar.webp"; 
+export const USER_AVATAR_URL = "/assets/user-avatar.webp"; 
+export const EXPERT_AVATAR_URL = "/assets/expert-avatar.webp"; 
 
 export const IconLogo: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -45,19 +46,19 @@ export const IconChevronLeft: React.FC<{ className?: string }> = ({ className })
 );
 
 export const IconThumbUp: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.993 0-1.903-.405-2.574-1.076L4 14V5a2 2 0 012-2h3.086a2 2 0 011.414.586l2 2zM6 5v9" />
   </svg>
 );
 
 export const IconThumbDown: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
      <path strokeLinecap="round" strokeLinejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.017c.993 0 1.903.405 2.574 1.076l4.543 4.543M18 19v-9" />
   </svg>
 );
 
 export const IconUserCircle: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
@@ -76,19 +77,37 @@ export const IconStar: React.FC<{ className?: string }> = ({ className }) => (
 
 export const IconWatch: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M18 3.5V2a1 1 0 00-1-1h-2m-4 0H9a1 1 0 00-1 1v1.5M6 20.5V22a1 1 0 001 1h2m4 0h2a1 1 0 001-1v-1.5"></path>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M18 3.5V2a1 1 0 00-1-1h-2m-4 0H9a1 1 0 00-1 1v1.5M6 20.5V22a1 1 0 001 1h2m4 0h2a1 1 0 001-1v-1.5"></path>
   </svg>
 );
 
 export const IconTie: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 2L8 6v13l4 3 4-3V6l-4-2z"></path>
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 2v4l-2 1.5V6"></path>
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6l2 1.5V6"></path>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 2L8 6v13l4 3 4-3V6l-4-2z"></path>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 2v4l-2 1.5V6"></path>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 6l2 1.5V6"></path>
   </svg>
 );
 
-// More icons can be added here as needed...
+export const IconX: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+);
+
+export const IconPlus: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+  </svg>
+);
+
+export const IconTrash: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+  </svg>
+);
+
+
 export const GEMINI_MODEL_TEXT = 'gemini-2.5-flash-preview-04-17';
-// export const GEMINI_MODEL_IMAGE = 'imagen-3.0-generate-002'; // If image generation is needed
+// export const GEMINI_MODEL_IMAGE = 'imagen-3.0-generate-002';
